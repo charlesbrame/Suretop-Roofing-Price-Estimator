@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roofing Cost Calculator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #a6a6a6;
+            font-family: Arial, sans-serif;
+        }
+
+        img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        #totalPrice {
+            margin-top: 20px;
+        }
+
+        .note {
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="suretop-roofing-logo.png" alt="Roofing Image">
+    <form>
+        <h1>Roofing Cost Calculator</h1>
+
+        <label for="squares">Squares:</label>
+        <input type="number" id="squares" name="squares" value="0">
+
+        <label for="dripEdge">Drip Edge total length in feet (eaves + rakes):</label>
+        <input type="number" id="dripEdge" name="dripEdge" value="0">
+
+        <button type="button" onclick="calculatePrice()">Calculate</button>
+
+        <p class="note">(includes warranty)</p>
+
+        <p id="totalPrice">Total Price: $0</p>
+    </form>
+
+    <script>
+        function calculatePrice() {
+            var x = document.getElementById('squares').value;
+            var y = document.getElementById('dripEdge').value;
+
+            var costOfRoof = 360 * x;
+            var z = Math.ceil(y / 10);  // rounds up to nearest whole number
+            var costOfDripEdge = 6.50 * z;
+            var totalDripEdgeCost = costOfDripEdge + 15 * x;
+            var warranty = 200;
+
+            var totalPrice = costOfRoof + totalDripEdgeCost + warranty;
+
+            document.getElementById('totalPrice').innerHTML = 'Total Price: $' + totalPrice.toFixed(2);
+        }
+    </script>
+</body>
+</html>
